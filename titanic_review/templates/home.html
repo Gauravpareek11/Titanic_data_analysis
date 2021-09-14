@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,4 +9,96 @@
 </head>
 <body>
 <h1>Titanic Survival Model</h1>
+<img src="{% static 'titanic_review\Titanic_home.jpg' %}" width=1300 height=292>
+
+<p>We will be using Titanic DataSet for Analysing the Data and then finally predicting whether a passenger will going to be survived or not.</p>
+<h3>Data Overview</h3>
+<p>We are given data of passenger boarded on titanic</p>
+<img src="{% static 'titanic_review\main_data.png' %}">
+<p>We have following columns</p>
+<ol type='1'>
+<li>PassengerID</li>
+<p>The id of the Passenger</p>
+<li>Pclass</li>
+<p>A proxy for socio-economic status (SES)<br>
+1st = Upper<br>
+2nd = Middle<br>
+3rd = Lower</p>
+<li>Name</li>
+<p>The name of the passenger</p>
+<li>Sex</li>
+<p>The Sex of the passenger(Male/Female)</p>
+<li>Age</li>
+<p>It denotes the age of the Passenger<p>
+<li>SibSp</li>
+<p>The dataset defines family relations in this way<br>
+Sibling = brother, sister, stepbrother, stepsister<br>
+Spouse = husband, wife (mistresses and fiancés were ignored)<br>
+This column tells us about number of Siblings/spouse that passenger have</p>
+<li>Parch</li>
+<p>The dataset defines family relations in this way…<br>
+Parent = mother, father<br>
+Child = daughter, son, stepdaughter, stepson<br>
+Some children travelled only with a nanny, therefore parch=0 for them.</p>
+<li>Ticket</li>
+<p>Ticket number of the passenger</p>
+<li>Fare</li>
+<p>Fare of the journey for that particular passenger</p>
+<li>Cabin</li>
+<p>It defines cabin number of the passenger some are None as all the passengers were not alloted the cabin</p>
+<li>Embarked</li>
+<p>point of embarkation
+1.Q=QueensTown<br>
+2.S=Southampton<br>
+3.C=Cherbourg</p>
+</ol>
+<h3>Data Analysis</h3>
+<p>We performed Data Analysis on above mentioned dataset to know the information about our data and to see what our data
+tells us.<br>
+We first checked whether our datatset contains null values or not?<br>
+We found that Age,Cabin and Embarked had some null values.<br>
+We will also check whether a particular columns have any relations with survival column or not?<br>
+From the data you can clearly see that columns like PassengerID,Name are not useful to us so we will simply
+drop these columns from our dataset.<br>
+After further analysis we found out that Ticket,cabin,Fare are also not useful for us.<p>
+<h3>Conclusions after Data Analysis</h3>
+<ol type='1'>
+<li>Out of 891 passengers 342 survived</li>
+<img src="{% static 'titanic_review\Total_survival.png' %}">
+<li>The chances of survival of females are higher than that of males<li>
+<img src="{% static 'titanic_review\Sex_survival.png' %}">
+3.  The chances of survival of passengers on basis of class is like:
+            1st class>2nd class>3rd class
+4. The chances of survival of children and Adult Females is more than that of Males and it decreases as the age pf the male increases.
+5. The chances of a Family person surviving is greater than an alone passenger surviving.
+<form action="{% url 'result' %}",method="get">
+{% csrf_token %}
+  <div class="form-group">
+    <label for="PassengerID">PassengerID</label><br>
+    <input type="number" id="passenger_id" name="passenger_id"><br>
+    <label for="Pclass">Pclass</label><br>
+    <input type="number" id="pclass" name="pclass"><br>
+    <label for="Name">Name</label><br>
+    <input type="text" id="Name" name="Name"><br>
+    <label for="Sex">Sex(M/F)</label><br>
+    <input type="text" id="sex" name="sex"><br>
+    <label for="Age">Age</label><br>
+    <input type="number" id="Age" name="Age"><br>
+    <label for="SibSp">SibSp</label><br>
+    <input type="number" id="SibSp" name="SibSp"><br>
+    <label for="Parch">Parch</label><br>
+    <input type="number" id="Parch" name="Parch"><br>
+    <label for="Ticket">Ticket</label><br>
+    <input type="text" id="Ticket" name="Ticket"><br>
+    <label for="Fare">Fare</label><br>
+    <input type="number" id="Fare" name="Fare"><br>
+    <label for="Cabin">Cabin</label><br>
+    <input type="text" id="Cabin" name="Cabin"><br>
+    <label for="Embarked">Embarked</label><br>
+    <input type="text" id="Embarked" name="Embarked"><br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
 </body>
+['PassengerId' 'Survived' 'Pclass' 'Name' 'Sex' 'Age' 'SibSp' 'Parch'
+ 'Ticket' 'Fare' 'Cabin' 'Embarked']
